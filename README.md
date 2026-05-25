@@ -4,6 +4,12 @@ A responsible AI project for credit risk modelling, calibration checks, and fair
 
 This is a new public portfolio project that demonstrates practical ML engineering without paid APIs.
 
+## Output Proof
+
+- Open [demo/index.html](demo/index.html) for a visual sample fairness dashboard.
+- Review [sample_outputs/fairness_report.json](sample_outputs/fairness_report.json) for a concrete evaluation report.
+- See [docs/demo.md](docs/demo.md) for what the demo proves.
+
 ## What This Demonstrates
 
 - End-to-end tabular ML workflow design.
@@ -45,4 +51,3 @@ The included sample data is synthetic and safe for public use. It is only for de
 - The included data is intentionally small and synthetic.
 - Production use would require a stronger validation strategy, larger data, drift checks, and governance review.
 - XGBoost is optional and not required for the core project.
-

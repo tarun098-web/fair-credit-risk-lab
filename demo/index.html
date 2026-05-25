@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fair Credit Risk Lab Demo</title>
+  <style>
+    :root {
+      --ink: #20222b;
+      --muted: #626b78;
+      --line: #d7dee8;
+      --paper: #f7f8fb;
+      --blue: #2b63c7;
+      --green: #0d7f5f;
+      --red: #b33a3a;
+      --violet: #7251b5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      color: var(--ink);
+      background: #f0f2f6;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    h1, h2, h3 { margin: 0; letter-spacing: 0; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 18px; margin-bottom: 12px; }
+    h3 { font-size: 15px; margin-bottom: 8px; }
+    p { margin: 8px 0 0; color: var(--muted); line-height: 1.5; }
+    .badge {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+    }
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(40, 45, 70, 0.08);
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .metric {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric span { color: var(--muted); font-size: 13px; }
+    .metric strong { display: block; font-size: 24px; margin-top: 4px; }
+    .bar-list {
+      display: grid;
+      gap: 12px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 190px 1fr 70px;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .track {
+      height: 12px;
+      border-radius: 999px;
+      background: #e7ebf2;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+    .fill.green { background: var(--green); }
+    .fill.red { background: var(--red); }
+    .fill.violet { background: var(--violet); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+    }
+    th { color: var(--muted); font-weight: 650; }
+    .note {
+      border-left: 4px solid var(--violet);
+      padding-left: 12px;
+      margin-top: 16px;
+      color: var(--ink);
+    }
+    @media (max-width: 880px) {
+      main { padding: 18px; }
+      header, .grid { display: grid; grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .bar-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Fair Credit Risk Lab</h1>
+        <p>Sample output proof for fairness-aware credit risk modelling and calibration reporting.</p>
+      </div>
+      <div class="badge">Demo artifact | synthetic data</div>
+    </header>
+
+    <section class="panel">
+      <h2>Model Evaluation Snapshot</h2>
+      <div class="metrics">
+        <div class="metric"><span>Precision</span><strong>0.83</strong></div>
+        <div class="metric"><span>Recall</span><strong>0.71</strong></div>
+        <div class="metric"><span>F1</span><strong>0.77</strong></div>
+        <div class="metric"><span>MACE</span><strong>0.18</strong></div>
+      </div>
+      <p class="note">Decision threshold: 0.60. Group A is treated as privileged for this demo; Group B is monitored for fairness gaps.</p>
+    </section>
+
+    <section class="grid" style="margin-top:18px;">
+      <div class="panel">
+        <h2>Fairness Metrics</h2>
+        <div class="bar-list">
+          <div class="bar-row"><span>Statistical parity diff</span><div class="track"><div class="fill red" style="width:38%"></div></div><strong>-0.20</strong></div>
+          <div class="bar-row"><span>Demographic parity diff</span><div class="track"><div class="fill violet" style="width:40%"></div></div><strong>0.20</strong></div>
+          <div class="bar-row"><span>Equal opportunity diff</span><div class="track"><div class="fill green" style="width:22%"></div></div><strong>-0.11</strong></div>
+          <div class="bar-row"><span>Equalized odds diff</span><div class="track"><div class="fill blue" style="width:46%"></div></div><strong>0.23</strong></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Sample Decisions</h2>
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Group</th><th>Score</th><th>Decision</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>A</td><td>0.92</td><td>approve</td></tr>
+            <tr><td>2</td><td>B</td><td>0.42</td><td>decline</td></tr>
+            <tr><td>6</td><td>B</td><td>0.80</td><td>approve</td></tr>
+            <tr><td>9</td><td>A</td><td>0.59</td><td>decline</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
