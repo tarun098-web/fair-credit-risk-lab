@@ -4,9 +4,12 @@ A responsible AI project for credit risk modelling, calibration checks, and fair
 
 This is a new public portfolio project that demonstrates practical ML engineering without paid APIs.
 
+![Fair Credit Risk Lab demo loop](assets/demo.svg)
+
 ## Output Proof
 
-- Open [demo/index.html](demo/index.html) for a visual sample fairness dashboard.
+- The loop above is visible directly in the GitHub README when the repository opens.
+- Open [demo/index.html](demo/index.html) only if you want the larger standalone demo page.
 - Review [sample_outputs/fairness_report.json](sample_outputs/fairness_report.json) for a concrete evaluation report.
 - See [docs/demo.md](docs/demo.md) for what the demo proves.
 
